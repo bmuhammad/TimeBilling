@@ -1,8 +1,10 @@
+using TimeBilling.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 //Adds needed dependencies
 builder.Services.AddRazorPages();
+builder.Services.AddTransient<IEmailService, DevTimeEmailService>();
 
 var app = builder.Build();
 

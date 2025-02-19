@@ -4,12 +4,20 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Time Billing - @ViewBag.Title</title>
+    @RenderSection("header", false)
 </head>
 <body>
-    <header>Time Billing</header>
+    <header>
+        <h1>Time Billing</h1>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/Contact">Contact</a></li>
+        </ul>
+    </header>
     <div>
         @RenderBody()
     </div>
     <footer>&copy; 2025 Time Billing</footer>
+    @RenderSection("scripts", false)
 </body>
 </html>
