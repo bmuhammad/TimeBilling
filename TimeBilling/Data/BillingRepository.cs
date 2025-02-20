@@ -46,6 +46,21 @@ public class BillingRepository : IBillingRepository
         }
     }
 
+    public async Task<Customer?> GetCustomers(int id)
+    {
+        try
+        {
+            return await _context.Customers
+                .Where(c => c.Id == id)
+                .FirstOrDefaultAsync();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Could not get Customers: {ex.Message}");
+            throw;
+        }
+    }
+
     public async Task<bool> SaveChanges()
     {
         try

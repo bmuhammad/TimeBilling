@@ -21,6 +21,8 @@ builder.Services.AddScoped<IBillingRepository, BillingRepository>();
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IEmailService, DevTimeEmailService>();
 
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 if (builder.Environment.IsDevelopment())
@@ -37,6 +39,8 @@ app.UseStaticFiles();
 
 //Directs to look under folder structure for razor files
 app.MapRazorPages();
+
+app.MapControllers();
 
 app.Run();
 
