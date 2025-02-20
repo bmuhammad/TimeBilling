@@ -19,9 +19,29 @@ namespace TimeBilling.Controllers
 
 
         [HttpGet("")]
-        public async Task<IEnumerable<Customer>> Get()
+        public async Task<ActionResult<IEnumerable<Customer>>> Get(bool withAddresses = false)
         {
-            return await _repository.GetCustomers();
+            try
+            {
+                IEnumerable<Customer> results;
+
+                if (withAddresses)
+                {
+                    results = await _repository.GetCustomersWithAddresses();
+                }
+                else
+                {
+                    results = await _repository.GetCustomers();
+                }
+                    return Ok(results);
+
+            }
+            catch (Exception)
+            {
+
+                _logger.LogError("Failed to get customers from database.");
+                return Problem("Failed to get customers from database.");
+            }
 
         }
 

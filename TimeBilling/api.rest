@@ -1,5 +1,8 @@
 GET http://localhost:5000/api/customers
 
 ###
+GET http:/localhost:5000/api/customers?/withAddresses=true
+
+###
 
 GET http:/localhost:5000/api/customers/1

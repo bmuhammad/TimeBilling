@@ -30,7 +30,21 @@ public class BillingRepository : IBillingRepository
             throw;
         }
     }
-
+    public async Task<IEnumerable<Customer>> GetCustomersWithAddresses()
+    {
+        try
+        {
+            return await _context.Customers
+                .Include(c => c.Address)
+                .OrderBy(e => e.CompanyName)
+                .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Could not get Customers: {ex.Message}");
+            throw;
+        }
+    }
     public async Task<IEnumerable<Customer>> GetCustomers()
     {
         try

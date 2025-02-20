@@ -5,6 +5,7 @@ namespace TimeBilling.Data;
 public interface IBillingRepository
 {
     Task<IEnumerable<Customer>> GetCustomers();
+    Task<IEnumerable<Customer>> GetCustomersWithAddresses();
     Task<Customer?> GetCustomers(int id);
     Task<IEnumerable<Employee>> GetEmpployees();
 
