@@ -1,6 +1,21 @@
+
+
+using System.Reflection;
+using TimeBilling.Data;
 using TimeBilling.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+IConfigurationBuilder configBuilder = builder.Configuration;
+configBuilder.Sources.Clear();
+configBuilder.AddJsonFile("appsettings.json")
+    .AddJsonFile("appsettings.development.json", true)
+    .AddUserSecrets(Assembly.GetExecutingAssembly())
+    .AddEnvironmentVariables()
+    .AddCommandLine(args);
+
+builder.Services.AddDbContext<BillingContext>();
+builder.Services.AddScoped<IBillingRepository, BillingRepository>();
 
 //Adds needed dependencies
 builder.Services.AddRazorPages();

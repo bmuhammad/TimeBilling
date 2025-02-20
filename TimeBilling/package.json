@@ -9,6 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "-vs-binding": {"ProjectOpened":["css"]},
   "type": "commonjs",
   "devDependencies": {
     "autoprefixer": "^10.4.20",

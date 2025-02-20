@@ -5,5 +5,19 @@
     ViewBag.Title = "Home Page";
 }
 
-    <h1>Time Billing</h1>
-    <p>Time Billing is a solution to billing for small companies and individualls.</p>
+<h1>Time Billing</h1>
+<p>Time Billing is a solution to billing for small companies and individualls.</p>
+
+@if (Model.Customers is not null && Model.Customers.Count() > 0)
+{
+    <ul>
+    @foreach (var customer in Model.Customers)
+    {
+        <li>@customer.CompanyName</li>
+    }
+    </ul>
+}
+else
+{
+    <div> No Customers Found</div>
+}
