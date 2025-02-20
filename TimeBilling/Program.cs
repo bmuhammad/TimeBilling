@@ -1,8 +1,13 @@
 
 
+using FluentValidation;
+using FreeBilling.Data.Entities;
+using Mapster;
 using System.Reflection;
+using TimeBilling.Apis;
 using TimeBilling.Data;
 using TimeBilling.Services;
+using TimeBilling.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +28,10 @@ builder.Services.AddTransient<IEmailService, DevTimeEmailService>();
 
 builder.Services.AddControllers();
 
+builder.Services.AddValidatorsFromAssemblyContaining<TimeBillModelValidator>();
+
+TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetEntryAssembly()!);
+
 var app = builder.Build();
 
 if (builder.Environment.IsDevelopment())
@@ -39,6 +48,8 @@ app.UseStaticFiles();
 
 //Directs to look under folder structure for razor files
 app.MapRazorPages();
+
+TimeBillsApi.Register(app);
 
 app.MapControllers();
 
